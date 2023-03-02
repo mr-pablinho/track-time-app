@@ -1,3 +1,5 @@
+import tkinter as tk
+from tkinter import ttk
 import datetime
 
 class TimeTracker:
@@ -32,3 +34,11 @@ class TimeTracker:
                 elapsed_time = task_time["end_time"] - task_time["start_time"] if task_time["end_time"] is not None else datetime.timedelta(0)
                 report += f" - Task: {task_name}, Elapsed time: {elapsed_time}\n"
         return report
+
+    def get_started_projects(self):
+        started_projects = set()
+        for project_name, project_tasks in self.project_hours.items():
+            for task_name, task_time in project_tasks.items():
+                if task_time["start_time"] is not None and task_time["end_time"] is None:
+                    started_projects.add(project_name)
+        return list(started_projects)
