@@ -1,0 +1,7 @@
+# Ignore environment-specific files and configurations
+.venv
+
+# Ignore logs and backup files
+*.log
+*.bak
+*.swp
