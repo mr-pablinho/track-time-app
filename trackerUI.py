@@ -10,9 +10,21 @@ class TimeTrackerUI:
         self.root.title("Time Tracker")
 
         # Set background and foreground colors
-        self.root.configure(bg="#393c4d")
-        ttk.Style().configure("TLabel", foreground="white", background="#393c4d", font=("Helvetica", 10))
-        ttk.Style().configure("TButton", foreground="#393c4d", background="red", font=("Helvetica", 10))
+        
+        base_color = "#282A36"
+        high_color = "#44475A"
+        clear_color = "#FFFFFF"
+        fore_color = "#4265A3"
+        dark_color = "#21222C"
+        
+        self.root.configure(bg=base_color, borderwidth=0, highlightthickness=0)
+        style = ttk.Style()
+        style.theme_use("clam")
+        style.configure("TLabel", foreground=clear_color, background=base_color, font=("Segoe UI", 10))
+        style.configure("TButton", foreground=fore_color, background=dark_color, font=("Segoe UI", 10), borderwidth=0, focuscolor=dark_color)
+        style.configure("TEntry", foreground=base_color, background=base_color, font=("Helvetica", 10), borderwidth=10, highlightthickness=0)
+        style.configure('style.TEntry', fieldbackground=dark_color, foreground=clear_color, background=dark_color, font=("Helvetica", 10), borderwidth=0, highlightthickness=0, focuscolor=dark_color)
+        style.map('TButton', background=[('active', dark_color)], foreground=[('active', clear_color)])
         
 
         # Create project name input
@@ -26,7 +38,7 @@ class TimeTrackerUI:
         task_label = ttk.Label(self.root, text="Task Name:")
         task_label.grid(row=1, column=0, padx=5, pady=5)
 
-        self.task_entry = ttk.Entry(self.root)
+        self.task_entry = ttk.Entry(self.root, style='style.TEntry')
         self.task_entry.grid(row=1, column=1, padx=5, pady=5)
 
         # Create buttons
